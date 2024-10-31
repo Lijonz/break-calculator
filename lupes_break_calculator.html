@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lupe's Break Calculator</title>
+    <style>
+        /* Calculator container styling */
+        .calculator {
+            background-color: #ffe6f2; /* Light pink background */
+            border: 2px solid #ff66b2; /* Darker pink border */
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 300px;
+            margin: auto;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+        }
+        
+        h2 {
+            color: #ff66b2; /* Dark pink */
+            text-align: center;
+        }
+        
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #ff1a75; /* Medium pink */
+        }
+        
+        input {
+            width: 20%; /* Make inputs smaller */
+            padding: 8px; /* Reduced padding */
+            border: 1px solid #ff1a75;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            text-align: center; /* Center text inside input */
+            display: inline-block;
+        }
+        
+        button {
+            background-color: #ff66b2; /* Button color */
+            color: white; /* Text color */
+            padding: 8px; /* Reduced padding */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            background-color: #ff1a75; /* Darker pink on hover */
+        }
+        
+        p {
+            font-weight: bold;
+            color: #ff1a75; /* Medium pink for result text */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator">
+        <h2>Lupe's Break Calculator</h2>
+        <label for="contributions">Number of Contributions:</label>
+        <input type="number" id="contributions" />
+        <br/>
+        <label for="duration">Duration (in minutes):</label>
+        <input type="number" id="duration" />
+        <br/>
+        <button onclick="calculateBreakTime()">Sa minuta pauz ka Lupja?</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function calculateBreakTime() {
+            const contributions = parseInt(document.getElementById('contributions').value);
+            const duration = parseInt(document.getElementById('duration').value);
+
+            if (isNaN(contributions) || isNaN(duration)) {
+                document.getElementById('result').innerText = 'Please enter valid numbers.';
+                return;
+            }
+
+            const totalContributionTime = contributions; // 1 min per contribution
+            const breakTime = totalContributionTime - duration;
+
+            if (breakTime < 0) {
+                document.getElementById('result').innerText = 'You have exceeded your contribution time.';
+            } else {
+                const hours = Math.floor(breakTime / 60);
+                const minutes = breakTime % 60;
+                document.getElementById('result').innerText = `Lupe mund te pushosh per ${hours} ore e ${minutes} minuta!!!`;
+            }
+        }
+    </script>
+
+</body>
+</html>
